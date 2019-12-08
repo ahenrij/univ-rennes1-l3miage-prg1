@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="BinaryTree.NodeType"/>
+    <fullyQualifiedTypeName name="Iterator.NodeType"/>
+    <fullyQualifiedTypeName name="NodeType"/>
+</qualifiedTypeNameHistroy>
