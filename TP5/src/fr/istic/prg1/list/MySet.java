@@ -318,8 +318,7 @@ public class MySet extends List<SubSet> {
 	 */
 	public void intersection(MySet set2) {
 
-		Iterator<SubSet> it1 = this.iterator();
-		Iterator<SubSet> it2 = set2.iterator();
+		Iterator<SubSet> it1 = this.iterator(), it2 = set2.iterator();
 
 		while (!it1.isOnFlag()) {
 
@@ -335,6 +334,7 @@ public class MySet extends List<SubSet> {
 				} else {
 					it1.goForward();
 				}
+				//it2.goForward();
 				break;
 			case SUP:
 				it1.remove();
@@ -352,7 +352,7 @@ public class MySet extends List<SubSet> {
 		Iterator<SubSet> it1 = this.iterator();
 		Iterator<SubSet> it2 = set2.iterator();
 
-		while (!it1.isOnFlag() || !it2.isOnFlag()) {
+		while (!it2.isOnFlag()) {
 
 			switch (compare(it2.getValue().rank, it1.getValue().rank)) {
 
@@ -366,13 +366,7 @@ public class MySet extends List<SubSet> {
 				it2.goForward();
 				break;
 			case SUP:
-				if (!it1.isOnFlag()) {
-					it1.goForward();
-				} else {
-					it1.addLeft(it2.getValue().clone());
-					it1.goForward();
-					it2.goForward();
-				}
+				it1.goForward();
 			}
 		}
 	}

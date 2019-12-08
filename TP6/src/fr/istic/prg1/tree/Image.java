@@ -392,7 +392,7 @@ public class Image extends AbstractImage {
 			white += 2;
 		}
 		it.goUp();
-		
+
 		it.goRight();
 		if (it.getValue().state == 0) {
 			black += 2;
@@ -400,7 +400,7 @@ public class Image extends AbstractImage {
 			white += 2;
 		}
 		it.goUp();
-		
+
 		return (white >= black) ? 1 : 0;
 	}
 
@@ -538,33 +538,30 @@ public class Image extends AbstractImage {
 		}
 
 		// We could have used one variable, but for better read...
-		boolean testTopLeft = false, testBottomRight = false;
+		boolean test = false;
 
 		it.goLeft();
 		if (it.getValue().state == 2) {
 			it.goLeft();
-			testTopLeft = testDiagonalAux(it);
+			test = testDiagonalAux(it);
 			it.goUp();
 		} else {
-			testTopLeft = it.getValue().state == 1;
+			test = it.getValue().state == 1;
 		}
 		it.goUp();
 
-		if (!testTopLeft) {
-			return false;
-		}
-
-		it.goRight();
-		if (it.getValue().state == 2) {
+		if (test) {
 			it.goRight();
-			testBottomRight = testDiagonalAux(it);
+			if (it.getValue().state == 2) {
+				it.goRight();
+				test = testDiagonalAux(it);
+				it.goUp();
+			} else {
+				test = it.getValue().state == 1;
+			}
 			it.goUp();
-		} else {
-			testBottomRight = it.getValue().state == 1;
 		}
-		it.goUp();
-
-		return testBottomRight; // testTopLeft == true
+		return test; // testTopLeft == true
 	}
 
 	/**
@@ -646,21 +643,18 @@ public class Image extends AbstractImage {
 
 			it.goLeft();
 			it2.goLeft();
-			boolean isIncludedInLeft = isIncludedInAux(it, it2);
+			boolean isIncludedIn = isIncludedInAux(it, it2);
 			it.goUp();
 			it2.goUp();
 
-			if (!isIncludedInLeft) {
-				return false;
+			if (isIncludedIn) {
+				it.goRight();
+				it2.goRight();
+				isIncludedIn = isIncludedInAux(it, it2);
+				it.goUp();
+				it2.goUp();
 			}
-
-			it.goRight();
-			it2.goRight();
-			boolean isIncludedInRight = isIncludedInAux(it, it2);
-			it.goUp();
-			it2.goUp();
-
-			return isIncludedInRight;
+			return isIncludedIn;
 		} else {
 			return false;
 		}
