@@ -8,7 +8,8 @@ import fr.istic.prg1.tree_util.Node;
 import fr.istic.prg1.tree_util.NodeType;
 
 /**
- * @author MickaÃ«l Foursov <foursov@univ-rennes1.fr>
+ * @author Mickaël Foursov <foursov@univ-rennes1.fr>
+ * @editor Henri Aïdasso <ahenrij@gmail.com>
  * @version 5.0
  * @since 2016-04-20
  * 
